@@ -1,0 +1,15 @@
+{
+	"name": "nodejsTest",
+	"version": "0.0.1",
+	"description": "SEDC NODEJS",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"cors": "^2.8.5"
+	},
+	"scripts":{
+		"start": "node main1.js password=123",
+		"production-build": "ng build --prod && mv /dist /app/dist && node server.js"
+	}
+}
