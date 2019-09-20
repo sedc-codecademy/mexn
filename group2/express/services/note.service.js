@@ -8,7 +8,8 @@ const storagePath = `${rootDir}/storage/notes.json`;
 
 const getAll = async () => {
     try {
-        return await files.readFile(storagePath)
+        // db wrapper
+        return await mongoWrapper.getCollction('note');
     } catch (error) {
         console.log("error: ", error)
     }
@@ -23,7 +24,9 @@ const createNote = async ({
         // const notes = JSON.parse(await getAll());
         // notes.push(note);
         // await files.createFile(storagePath, JSON.stringify(notes));
-        const {ops:[n]} = await mongoWrapper.createDocument('note', note)
+        const {
+            ops: [n]
+        } = await mongoWrapper.createDocument('note', note)
         console.log(n)
         return n;
     } catch (error) {
@@ -33,27 +36,32 @@ const createNote = async ({
 
 const getNoteById = async id => {
     try {
-        const notes = JSON.parse(await getAll());
-        const note = notes.find(note => note.id === id);
+
+        const note = await mongoWrapper.getById('note',id);
+        console.log('note', note)
         return note;
     } catch (error) {
         console.log("error", error)
     }
 }
 
-const editNote = async (id, noteProps) => {
+const editNote = async ({condition,set}) => {
     try {
-        const notes = JSON.parse(await getAll());
-        const index = notes.findIndex(note => note.id === id);
-        notes[index] = {
-            ...notes[index],
-            ...noteProps
-        }
+        const editedNote = await mongoWrapper.updateDocument('note', condition, set)
+        console.log("editedNote", editedNote)
 
-        await files.createFile(storagePath, JSON.stringify(notes));
+        return editedNote;
+    } catch (error) {
+        console.log("error", error)
+    }
+}
 
-        return notes[index];
+const deleteNote = async data => {
+    try {
+        const editedNote = await mongoWrapper.dropCollection('note', data)
+        console.log("editedNote", editedNote)
 
+        return editedNote;
     } catch (error) {
         console.log("error", error)
     }
@@ -64,5 +72,6 @@ module.exports = {
     getAll,
     createNote,
     getNoteById,
-    editNote
+    editNote,
+    deleteNote
 }
