@@ -9,7 +9,7 @@ const database = require('./modules/database/database.module');
 let db = new database();
 
 setTimeout( async () => {
-	let collections = await db.listCollection();
+	let collections = await db.insertOne('users', {a: 1, b:2 });
 	console.log(collections);
 }, 3000)
 
