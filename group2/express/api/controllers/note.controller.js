@@ -9,7 +9,6 @@ const getAllNotes = async (_, res) => {
 const createNote = async (req, res) => {
     const { body } = req;
     const createdNote = await noteService.createNote(body);
-    console.log(createdNote, "createdNote")
     res.status(200).send(createdNote)
 }
 

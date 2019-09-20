@@ -1,6 +1,6 @@
 const Files = require('../storage/files');
 const Note = require("../models/note");
-
+const mongoWrapper = require("../mongo/databse-wrapper");
 const files = new Files();
 
 const rootDir = require("../helpers/path");
@@ -14,13 +14,18 @@ const getAll = async () => {
     }
 }
 
-const createNote = async ({ title, description }) => {
+const createNote = async ({
+    title,
+    description
+}) => {
     const note = new Note(title, description);
     try {
-        const notes = JSON.parse(await getAll());
-        notes.push(note);
-        await files.createFile(storagePath, JSON.stringify(notes));
-        return note;
+        // const notes = JSON.parse(await getAll());
+        // notes.push(note);
+        // await files.createFile(storagePath, JSON.stringify(notes));
+        const {ops:[n]} = await mongoWrapper.createDocument('note', note)
+        console.log(n)
+        return n;
     } catch (error) {
         console.log("error", error)
     }
@@ -40,12 +45,15 @@ const editNote = async (id, noteProps) => {
     try {
         const notes = JSON.parse(await getAll());
         const index = notes.findIndex(note => note.id === id);
-        notes[index] = { ...notes[index], ...noteProps }
+        notes[index] = {
+            ...notes[index],
+            ...noteProps
+        }
 
         await files.createFile(storagePath, JSON.stringify(notes));
 
         return notes[index];
-        
+
     } catch (error) {
         console.log("error", error)
     }
