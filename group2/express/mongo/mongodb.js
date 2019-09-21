@@ -1,10 +1,12 @@
 const {
     MongoClient
 } = require('mongodb');
+const {connectionString} = require("../config/database")
 
 class MongoDBCLient {
     constructor() {
-        this.client = new MongoClient("mongodb+srv://deko:asdzxc123@sedc-aqrnc.mongodb.net/test?retryWrites=true&w=majority", {
+        console.log(connectionString,"connection string")
+        this.client = new MongoClient(connectionString, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
@@ -19,7 +21,7 @@ class MongoDBCLient {
                 return;
             }
             console.log('Connect to DB')
-            process.db = client.db("notes-demo")
+            process.db = client.db("dropbox")
         })
     }
 

@@ -43,6 +43,23 @@ class MongoWrapper {
         return await process.db.collection(collectionName).deleteOne(data);
     }
 
+    async findDocument(collectionName, query) {
+        if (!process.db) return false;
+
+        return await process.db.collection(collectionName).findOne(query);
+    }
+
+    async createNewDocument(collectionName, doc) {
+        if (!process.db)
+            return false;
+
+        return await process.db.collection(collectionName).insertOne(doc)
+            .catch((e) => {
+                console.log('Create collection', e);
+                return false;
+            });
+    }
+
     async getById(collectionName, id) {
         if (!process.db) return;
 

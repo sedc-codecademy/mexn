@@ -5,12 +5,12 @@ const bodyParser = require("body-parser");
 
 const PORT = 3001;
 
-const noteRouter = require('./api/routes/note.routes');
+const allRoutes = require('./api/routes/index');
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.use(noteRouter);
+app.use(allRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server listen on port: ${PORT}`)
