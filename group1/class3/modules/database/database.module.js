@@ -73,7 +73,7 @@ class Database
         })
 	}
 	
-	async insertMany(collectionNAme, records)
+	async insertMany(collectionName, records)
 	{
 	    if( ! records )
 	    return false;
