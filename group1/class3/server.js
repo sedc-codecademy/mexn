@@ -7,6 +7,9 @@ const session = require('./interceptors/session.interceptor');
 const mongodb = require('./modules/database/mongo.module');
 const database = require('./modules/database/database.module');
 
+
+const authRoutes = require('./routes/auth.routes');
+
 const app = express();
 app.use(session);
 
@@ -14,6 +17,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(config.staticFiles));
 app.use(headers);
+
+app.use('/auth', authRoutes);
 
 app.get('/*', (req, res) => {
 	res.status(404).json({});
