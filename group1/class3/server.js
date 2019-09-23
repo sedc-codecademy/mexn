@@ -9,6 +9,8 @@ const database = require('./modules/database/database.module');
 
 
 const authRoutes = require('./routes/auth.routes');
+const usersRoutes = require('./routes/users.routes');
+const filesRoutes = require('./routes/files.routes');
 
 const app = express();
 app.use(session);
@@ -19,6 +21,8 @@ app.use(express.static(config.staticFiles));
 app.use(headers);
 
 app.use('/auth', authRoutes);
+app.use('/user', usersRoutes);
+app.use('/file', filesRoutes);
 
 app.get('/*', (req, res) => {
 	res.status(404).json({});
