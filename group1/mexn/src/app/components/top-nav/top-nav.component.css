@@ -1,0 +1,15 @@
+ul
+{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  background: #999;
+  color: white;
+}
+
+ul > li
+{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 5px;
+}
