@@ -1,1 +1,3 @@
-<app-top-nav></app-top-nav>
+<app-top-nav [user]="currentUser" [showMenu]="false"></app-top-nav>
+<app-side-nav *ngIf="currentUser"></app-side-nav>
+<app-workspace [user]="currentUser"></app-workspace>

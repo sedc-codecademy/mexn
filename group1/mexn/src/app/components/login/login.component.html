@@ -1,0 +1,23 @@
+<form #f="ngForm" (ngSubmit)="onFormSubmit(f)" validate>
+  
+  <div>
+    
+    <input type="email" ngModel name="email" #email="ngModel" required placeholder="Add your email" />
+  </div>
+  
+  <div>
+    <input type="password" ngModel name="password" #password="ngModel" required placeholder="Insert your password" />
+  </div>
+  
+  <!--<div>-->
+  <!--  <input type="text" name="genericText" [(ngModel)]="genericTextVar" (ngModelChange)="genericChange()" />-->
+  <!--</div>-->
+  
+  <div>
+    <button>Submit</button>
+  </div>
+  
+</form>
+
+<!--<p> Email : {{email.value}} </p>-->
+<!--<p> Password: {{password.value}} </p>-->
