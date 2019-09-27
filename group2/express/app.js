@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.use(allRoutes);
+// lcoalhost:3001/files
 
 app.listen(PORT, () => {
     console.log(`Server listen on port: ${PORT}`)

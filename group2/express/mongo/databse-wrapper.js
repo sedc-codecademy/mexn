@@ -60,6 +60,27 @@ class MongoWrapper {
             });
     }
 
+    async createNewDocuments(collectionName, docs) {
+        if (!process.db)
+            return false;
+
+        return await process.db.collection(collectionName).insertMany(docs)
+            .catch((e) => {
+                console.log('Create collection', e);
+                return false;
+            });
+    }
+    async createNewDocument(collectionName, doc) {
+        if (!process.db)
+            return false;
+
+        return await process.db.collection(collectionName).insertOne(doc)
+            .catch((e) => {
+                console.log('Create collection', e);
+                return false;
+            });
+    }
+
     async getById(collectionName, id) {
         if (!process.db) return;
 
