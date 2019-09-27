@@ -1,0 +1,7 @@
+<ul appTopNavHover *ngIf="user" [ngClass]="classes">
+  <li *ngFor="let item of items" (click)="printItem(item)" [ngClass]="{'class1' : item.title === 'Something'}"><a>{{item.title}}</a></li>
+</ul>
+
+<ul *ngIf="! user ">
+  
+</ul>

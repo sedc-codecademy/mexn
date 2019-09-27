@@ -80,7 +80,34 @@ class Files
 			})
 		})
 		
-	}
+    }
+    
+    async getUserRootFolder(userId)
+    {
+        let path = `./files/${userId.toString()}`;
+
+        let dir = await fs.existsSync(path)
+        if( ! dir )
+        return false;
+
+        let filesList = await fs.readdirSync(path, (err, files) => {
+            
+            if (err) {
+                console.log('Scan dir: ', err);
+                return false;
+            }
+
+            return files;
+        });
+
+        console.log(filesList);
+        return filesList;
+    }
+
+    async createNewDir(path)
+    {
+        return await fs.mkdirSync(path);
+    }
 }
 
 module.exports = Files;
