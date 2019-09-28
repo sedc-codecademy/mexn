@@ -1,6 +1,8 @@
 import { Component, OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy, Input } from '@angular/core';
 
 import { TopNavService } from '../../services/top-nav.service';
+import { AuthService } from '../../services/auth.service';
+
 import { User, UserRoles } from '../../interfaces/user';
 
 @Component({
@@ -9,7 +11,7 @@ import { User, UserRoles } from '../../interfaces/user';
   styleUrls: ['./top-nav.component.css']
 })
 
-export class TopNavComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy {
+export class TopNavComponent implements OnInit {
   
   @Input() user:User;
   @Input() showMenu:boolean = true;
@@ -20,7 +22,8 @@ export class TopNavComponent implements OnInit, DoCheck, AfterViewInit, AfterVie
   eUser = UserRoles;
   
   constructor(
-    private topNavService:TopNavService
+    private topNavService:TopNavService,
+    private auth:AuthService
   ) { }
 
   ngOnInit() {
@@ -33,20 +36,10 @@ export class TopNavComponent implements OnInit, DoCheck, AfterViewInit, AfterVie
     console.log(item);
   }
   
-  ngDoCheck(){
-    console.log("Do Check")
+  logout()
+  {
+    this.auth.logout().subscribe((data) => {
+      
+    });
   }
-  
-  ngAfterViewInit(){
-    console.log("After View init")
-  }
-  
-  ngAfterViewChecked(){
-    console.log("After View Checked")
-  }
-  
-  ngOnDestroy(){
-    console.log("Destroy");
-  }
-
 }

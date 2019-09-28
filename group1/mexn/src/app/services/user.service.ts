@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -8,9 +8,16 @@ export class UserService {
 
   constructor() { }
   
+  @Output() user:EventEmitter<User> = new EventEmitter();
+  
   getCurrentUser()
   {
-    return localStorage.getItem("user");
+    return JSON.parse(localStorage.getItem("user"));
+  }
+  
+  dispatchCurrentUser()
+  {
+    this.user.emit(this.getCurrentUser());
   }
   
   blancoUser():User
