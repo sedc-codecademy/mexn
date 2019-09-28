@@ -1,7 +1,9 @@
-import { Component, OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TopNavService } from '../../services/top-nav.service';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 import { User, UserRoles } from '../../interfaces/user';
 
@@ -23,7 +25,9 @@ export class TopNavComponent implements OnInit {
   
   constructor(
     private topNavService:TopNavService,
-    private auth:AuthService
+    private auth:AuthService,
+    private router:Router,
+    private userService:UserService
   ) { }
 
   ngOnInit() {
@@ -39,7 +43,8 @@ export class TopNavComponent implements OnInit {
   logout()
   {
     this.auth.logout().subscribe((data) => {
-      
+      localStorage.removeItem("user");
+      this.userService.dispatchCurrentUser();
     });
   }
 }

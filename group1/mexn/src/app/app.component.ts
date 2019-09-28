@@ -34,9 +34,12 @@ export class AppComponent implements OnInit{
   private _subscribeToUser()
   {
     this.us.user.subscribe((data) => {
-      if(data)
+      
       this.currentUser = data;
+      if(data)
       this.router.navigate(['/']);
+      if( ! data)
+      this.router.navigate(['/login']);
     })
   }
 }
