@@ -58,8 +58,11 @@ router.post('/register', async (req, res) => {
 router.get('/logout', (req, res) => {
 
     if(req.session && req.session.user)
-    res.status(200).json({"result":"Logout was successfull"});
-
+    {
+      delete req.session.user;
+      res.status(200).json({"result":"Logout was successfull"});
+    }
+    else
     res.status(200).json({"result":"No active session for this machine"});
 })
 

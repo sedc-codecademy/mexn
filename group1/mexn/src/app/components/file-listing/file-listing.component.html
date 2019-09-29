@@ -1,1 +1,7 @@
-<p>file-listing works!</p>
+<div class="file-list-container">
+  <ul *ngIf="userDir && userDir.length">
+    <li *ngFor="let file of userDir">{{file}}</li>
+  </ul>
+  
+  <div *ngIf="! userDir.length">You have no files uploaded</div>
+</div>
