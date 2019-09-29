@@ -1,0 +1,38 @@
+<!-- NGIF -->
+<h2>Ng If</h2>
+<div *ngFor="let note of notes">
+  <div *ngIf="note.id !== 1" class="note-wrapper" appToggle>
+    <h2>{{note.title}}</h2>
+    <p>{{note.id}}</p>
+    <span class="display-none description">
+      {{note.description}}
+    </span>
+    <span>
+      {{note.price | currency: 'MKD'}}
+    </span>
+  </div>
+</div>
+<!-- *ngIf ngSiwtch-->
+
+<!-- 
+  STRUCTIRAL DIRECTIVES: ngFOr, ngIf, ngSwitchCase
+ -->
+
+<h2>Switch</h2>
+
+<div *ngFor="let note of notes" [ngSwitch]="note.id">
+  <p *ngSwitchCase="1" [ngClass]="{'greenCard':true}">note id with one value:{{note.id}}</p>
+  <h3 *ngSwitchDefault [style.color]="'red'">this default behavior {{note.id}}</h3>
+</div>
+
+<input type="text" [(ngModel)]="inputValue" hover [color]="'green'">
+<div>{{inputValue}}</div>
+<div (click)="logInputValue()">Click</div>
+
+<!-- 
+  ngStyle, ngClass
+ -->
+
+<!-- note component PRESENTATION -->
+<app-note *ngFor="let note of notes | sortBy" [note]="note">
+</app-note>

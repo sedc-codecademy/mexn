@@ -1,0 +1,8 @@
+.note-wrapper
+{
+    display: inline-flex;
+    flex-direction: column;
+    border:1px solid grey;
+    border-radius: 5px;
+    padding: 20px;
+}
