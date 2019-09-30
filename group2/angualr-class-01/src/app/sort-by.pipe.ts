@@ -9,7 +9,7 @@ export class SortByPipe implements PipeTransform {
   {
     values.sort((a, b) =>
     {
-      return a.price - b.price
+      return a[args] - b[args]
     })
 
     return values;

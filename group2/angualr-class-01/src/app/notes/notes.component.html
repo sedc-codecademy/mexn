@@ -34,5 +34,6 @@
  -->
 
 <!-- note component PRESENTATION -->
-<app-note *ngFor="let note of notes | sortBy" [note]="note">
+<app-note *ngFor="let note of notes | sortBy : 'id'" [note]="note"
+  [routerLink]="['/notes',note.id]">
 </app-note>

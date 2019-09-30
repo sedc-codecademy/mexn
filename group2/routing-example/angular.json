@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sedc-class": {
+    "routing-example": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sedc-class",
+            "outputPath": "dist/routing-example",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -51,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sedc-class:build"
+            "browserTarget": "routing-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sedc-class:build:production"
+              "browserTarget": "routing-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sedc-class:build"
+            "browserTarget": "routing-example:build"
           }
         },
         "test": {
@@ -96,7 +96,7 @@
         }
       }
     },
-    "sedc-class-e2e": {
+    "routing-example-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -104,11 +104,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sedc-class:serve"
+            "devServerTarget": "routing-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sedc-class:serve:production"
+              "devServerTarget": "routing-example:serve:production"
             }
           }
         },
@@ -124,5 +124,5 @@
       }
     }
   },
-  "defaultProject": "sedc-class"
+  "defaultProject": "routing-example"
 }

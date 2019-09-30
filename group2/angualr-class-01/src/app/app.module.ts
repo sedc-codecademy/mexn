@@ -9,6 +9,36 @@ import { HoverDirective } from './hover.directive';
 import { SortByPipe } from './sort-by.pipe';
 import { CustomService } from './custom.service';
 import { NoteComponent } from './note/note.component';
+import { HomeComponent } from './home/home.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+  },
+  {
+    path: 'notes',
+    component: NotesComponent,
+  },
+  {
+    path: 'notes/:id',
+    component: NoteComponent,
+  },
+  { path: '**', component: PagenotfoundComponent }
+];
+
 
 @NgModule({
   declarations: [
@@ -17,12 +47,16 @@ import { NoteComponent } from './note/note.component';
     ToggleDirective,
     HoverDirective,
     SortByPipe,
-    NoteComponent
+    NoteComponent,
+    HomeComponent,
+    PagenotfoundComponent,
+    AboutComponent
     //  here coems all directives, components, pipes
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
     // all outside modules
   ],
   providers: [
