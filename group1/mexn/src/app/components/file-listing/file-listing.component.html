@@ -1,6 +1,11 @@
 <div class="file-list-container">
+  
+  <app-path-breadcrumbs *ngIf="userData" [path]="currentPath" (changePath)="breadCrumbChange($event)"></app-path-breadcrumbs>
+  
   <ul *ngIf="userDir && userDir.length">
-    <li *ngFor="let file of userDir">{{file}}</li>
+    <li *ngFor="let file of userDir">
+      <app-file-folder [item]="file" [path]="currentPath" (changePath)="updatePath($event)"></app-file-folder>
+    </li>
   </ul>
   
   <div *ngIf="! userDir.length">You have no files uploaded</div>

@@ -1,0 +1,42 @@
+.file-list-container
+{
+  display:block;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  background: #EEE;
+}
+
+.file-list-container > ul,
+.file-list-container > ul > li
+{
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.file-list-container > ul > li:hover
+{
+  background: #999;
+  color: #FFF;
+}
+
+app-path-breadcrumbs
+{
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+  line-height: 18px;
+  padding:0;
+}
+
+app-file-folder
+{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+  padding: 10px;
+}

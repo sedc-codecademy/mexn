@@ -1,0 +1,14 @@
+<ng-container *ngIf="type"> <!-- type if true, then it is file !-->
+  <div>{{item}}</div>
+  <div>
+    <span><a href="//localhost:3000/files/{{makeUrlFromArray()}}/{{item}}" download target="_blank">Download</a></span>
+    <span>Delete</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="! type"> <!-- type if false, then it is folder !-->
+  <div (click)="changeFolder()">{{item}}</div>
+  <div>
+    <span>Delete</span>
+  </div>
+</ng-container>

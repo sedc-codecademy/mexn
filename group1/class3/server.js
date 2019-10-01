@@ -18,6 +18,7 @@ app.use(session);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(config.staticFiles));
+app.use('/files', express.static(config.userFiles));
 app.use(headers);
 
 app.use('/auth', authRoutes);
