@@ -4,7 +4,7 @@ MEAN/MERN classes
 Materials from MEAN and MERN classes that were tested
 
 
-# extra resources for angular
+# Extra Angular resources
   https://angular.io/
   
   https://blog.angularindepth.com/tagged/angular
