@@ -1,0 +1,15 @@
+.greenCard
+{
+    border: 1px solid green;
+    color:brown;
+}
+
+.display-none
+{
+    display: none;
+}
+
+.open > .description
+{
+    display: block !important;
+}
