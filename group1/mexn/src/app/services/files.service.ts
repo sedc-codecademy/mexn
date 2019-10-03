@@ -14,4 +14,11 @@ export class FilesService {
   {
     return this.http.get('http://localhost:3000/file/byuser', {withCredentials: true});
   }
+  
+  getDirByPath(path:string)
+  {
+    return this.http.get('http://localhost:3000/file/directory', {withCredentials: true, params: {directory: path}
+      
+    });
+  }
 }

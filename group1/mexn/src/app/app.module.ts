@@ -17,6 +17,8 @@ import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { LoginComponent } from './components/login/login.component';
 import { FileListingComponent } from './components/file-listing/file-listing.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FileFolderComponent } from './components/file-folder/file-folder.component';
+import { PathBreadcrumbsComponent } from './components/path-breadcrumbs/path-breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { RegisterComponent } from './components/register/register.component';
     WorkspaceComponent,
     LoginComponent,
     FileListingComponent,
-    RegisterComponent
+    RegisterComponent,
+    FileFolderComponent,
+    PathBreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

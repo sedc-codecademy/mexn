@@ -103,6 +103,28 @@ class Files
         console.log(filesList);
         return filesList;
     }
+    
+    async getFolderByPath(desiredPath)
+    {
+        let path = `./files/${desiredPath}`;
+        
+        let dir = await fs.existsSync(path)
+        if( ! dir )
+        return false;
+
+        let filesList = await fs.readdirSync(path, (err, files) => {
+            
+            if (err) {
+                console.log('Scan dir: ', err);
+                return false;
+            }
+
+            return files;
+        });
+
+        console.log(filesList);
+        return filesList;
+    }
 
     async createNewDir(path)
     {

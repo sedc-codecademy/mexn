@@ -1,0 +1,11 @@
+.calculator
+{
+  display: block;
+  width: 250px;
+  max-width: 250px;
+  margin: 50px auto;
+  padding: 10px;
+  border: 1px solid #333;
+  background: #ECECEC;
+  border-radius: 10px;
+}
