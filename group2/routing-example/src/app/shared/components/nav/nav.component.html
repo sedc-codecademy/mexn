@@ -17,6 +17,8 @@
         </li>
     </ul>
   </div>
-
+  <div *ngIf="currentUser$ | async as currentUser">
+    {{currentUser.email}}
+  </div>
   <!-- <div [routerLink]="aboutProperty">Go to About</div> -->
 </nav>

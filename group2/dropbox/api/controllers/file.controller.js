@@ -25,7 +25,7 @@ const uploadFiles = async (req, res) => {
     if (!files) {
         return res.status(400).send('Please send fils');
     }
-
+    console.log('files:',files)
     try {
         const {
             ops: response

@@ -1,3 +1,14 @@
-<p>
-  login works!
-</p>
+<div class="header center">Log In</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+
+  <input matInput type="text" id="email" placeholder="email" autocomplete="off" formControlName="email"
+    required>
+
+  <input matInput type="password" id="password" placeholder="Password" formControlName="password" required>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+  </div>
+
+</form>

@@ -1,0 +1,10 @@
+<div class="d-flex align-items-center justify-content-between file-container">
+  <div class="d-flex align-items-center">
+    <div class="mr-2">Icon</div>
+    <div>{{file.originalname}}</div>
+  </div>
+  <div class="d-flex align-items-center">
+    <span class="mr-2" (click)="onDownload.emit(file.filename)">Download</span>
+    <span>Delete</span>
+  </div>
+</div>

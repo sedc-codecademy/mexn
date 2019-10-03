@@ -1,3 +1,9 @@
-<p>
-  files works!
-</p>
+<div class="files-wrapper">
+  <app-file *ngFor="let file of files" 
+  [file]="file"
+  (onDownload)="onDownload($event)"
+  ></app-file>
+</div>
+<input type="file">
+
+<div (click)="update()">Update email</div>

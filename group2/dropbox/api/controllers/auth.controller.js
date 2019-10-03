@@ -48,7 +48,10 @@ const login = async (req, res) => {
         };
 
         const token = await userService.generateToken(email, user._id.toString())
-        res.status(200).send(token);
+        res.status(200).send({
+            email,
+            token
+        });
     } catch (error) {
 
     }

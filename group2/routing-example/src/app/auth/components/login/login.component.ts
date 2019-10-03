@@ -1,84 +1,40 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, from, interval } from 'rxjs';
-import { map, filter, take, publish } from 'rxjs/operators';
-import { LoginService } from '../../services/login.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy
+export class LoginComponent implements OnInit
 {
 
-  constructor(
-    private _activatedRoute: ActivatedRoute,
-    private loginService: LoginService)
-  {
+  loginForm: FormGroup;
 
-  }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit()
   {
-    this.loginService.getData()
-      .subscribe(data => console.log(data))
-    // this._activatedRoute.params.subscribe(result =>
-    // {
-    //   console.log(result)
-    // })
-
-    // let stream$ = Observable.create((observer) =>
-    // {
-    //   observer.next('1');
-    //   observer.next('1');
-    //   observer.next('1');
-    //   observer.next('1');
-    //   observer.next('1');
-    //   observer.next('1');
-    //   observer.next('1');
-    // });
-
-    // stream$.subscribe(
-    //   (data) =>
-    //   {
-    //     console.log('Data', data);
-    //   },
-    //   err =>
-    //   {
-    //     console.log(err)
-    //   })
-
-    const dummyData = this.loginService.dummyData();
-    console.log(dummyData)
-    let stream$ = from([1, 2, 3])
-      .pipe(filter(value => value !== 1))
-
-    stream$.subscribe((value) =>
-    {
-      console.log('Value', value);
-    })
-
-
-    let promise = new Promise((resolve, reject) =>
-    {
-      setTimeout(() =>
-      {
-        resolve([1, 2, 3])
-        console.log('in PROMISE')
-      })
-    })
-
-    promise.then((value) =>
-    {
-      console.log('Value', value)
-    })
-
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
-  ngOnDestroy()
-  {
+  get f() { return this.loginForm.controls; }
 
+  login()
+  {
+    this.authService.login(this.f.email.value, this.f.password.value)
+      .subscribe(success =>
+      {
+        if (success)
+        {
+          this.router.navigate(['/dropbox']);
+        }
+      });
   }
 
 }
