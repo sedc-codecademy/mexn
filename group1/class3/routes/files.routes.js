@@ -21,28 +21,27 @@ router.get('/byuser', async (req, res) => {
 
 });
 
-router.get('/:dirPath/:fileName', (req, res) => {
-	res.send("OK");
-});
-
-router.get('/all', (req, res) => {
-	res.send("OK");
+router.get('/directory', async(req, res) => {
+    
+    let f = new fs();
+    
+    if(req.query && req.query.directory && req.session && req.session.user)
+    {
+      let dir = await f.getFolderByPath(req.query.directory);
+      
+      if(dir)
+      res.status(200).json({"result": dir});
+      else
+      res.status(404).json({"result": "Not found"});
+    }
+    else if(! req.session || ! req.session.user)
+    {
+      res.status(403).json({"result": "Not authenticated"});
+    }
+    else
+    {
+      res.status(412).json({"result": "Bad request"});
+    }
 })
-
-router.post('/', (req, res) => {
-	res.send("OK");
-});
-
-router.put('/:dirPath/:fileName', (req, res) => {
-	res.send("OK");
-});
-
-router.delete('/:dirPath/:fileName', (req, res) => {
-	res.send("OK");
-});
-
-router.get('/:dirPath/:fileName', (req, res) => {
-	res.send("OK");
-});
 
 module.exports = router;

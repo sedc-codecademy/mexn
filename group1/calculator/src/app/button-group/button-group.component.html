@@ -1,0 +1,15 @@
+<div class="button-group">
+  <div class="left-side">
+    <div>
+      <app-button *ngFor="let special of buttons.special" [btnValue]="special"(cmdClicked)="newValue($event)"></app-button>
+    </div>
+    <div>
+      <app-button *ngFor="let numbers of buttons.numbers" [btnValue]="numbers"(cmdClicked)="newValue($event)"></app-button>
+    </div>
+  </div>
+  <div class="right-side">
+    <div>
+      <app-button *ngFor="let operations of buttons.operations" [btnValue]="operations" (cmdClicked)="newValue($event)"></app-button>
+    </div>
+  </div>
+</div>

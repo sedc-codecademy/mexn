@@ -1,0 +1,8 @@
+<div class="calculator">
+  <div class="display-wrapper">
+    <app-display [values]="toDisplay"></app-display>
+  </div>
+  <div class="button-group-wrapper">
+    <app-button-group [data]="toDisplay" (values)="sendToDisplay($event)" (equation)="calculateOnDisplay()"></app-button-group>
+  </div>
+</div>

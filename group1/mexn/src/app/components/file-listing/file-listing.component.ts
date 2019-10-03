@@ -33,16 +33,27 @@ export class FileListingComponent implements OnInit {
     })
   }
   
+  private _loadDirByPath()
+  {
+    this.files.getDirByPath(this.currentPath.join("/")).subscribe((data:any) => {
+      this.userDir = data.result;
+    })
+  }
+  
   updatePath(value:string)
   {
     if(value)
-    this.currentPath.push(value);
+    {
+      this.currentPath.push(value);
+      this._loadDirByPath();
+    }
   }
   
   breadCrumbChange(newPath)
   {
     if(newPath && newPath.length)
     this.currentPath = newPath;
+    this._loadDirByPath();
   }
   
 }
