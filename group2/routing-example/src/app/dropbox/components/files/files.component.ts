@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileService } from 'src/app/dropbox/services/file.service';
 import { IFile } from '../../interfaces/IFile';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-files',
@@ -10,16 +11,16 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class FilesComponent implements OnInit
 {
-  files: IFile[];
-  constructor(private _fileServie: FileService, private _authService: AuthService) { }
+  files$: Observable<IFile[]> = this._fileServie.files$;
+
+  constructor(private _fileServie: FileService, private _authService: AuthService)
+  {
+    this._fileServie.initFiles()
+  }
 
   ngOnInit()
   {
-    this._fileServie.getAll()
-      .subscribe(files =>
-      {
-        this.files = files
-      })
+
   }
 
   onDownload(fileName: string)
@@ -29,7 +30,12 @@ export class FilesComponent implements OnInit
 
   update()
   {
-    this._authService.editUser({email:'Nesto bezvrska'})
+    this._authService.editUser({ email: 'Nesto bezvrska' })
+  }
+
+  onDelete(id)
+  {
+    this._fileServie.deleteFile(id).subscribe()
   }
 
 }

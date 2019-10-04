@@ -14,4 +14,8 @@ export class ServiceConfig
     public static FILES = `${ServiceConfig.HOST}/files`;
 
     public static DOWNLOAD = `${ServiceConfig.FILES}/download`;
+
+    public static UPLOAD = `${ServiceConfig.FILES}`;
+
+    public static DELETE = `${ServiceConfig.FILES}`;
 }

@@ -1,6 +1,20 @@
 .files-wrapper
 {
    display: flex;
-   align-items: center;
-   justify-content: center;
+   flex-flow: column;
+   flex:1;
+   margin-right: 20px;
+   margin-left: 20px;
+   border-top: 1px solid #E6E8EB;
+}
+
+.files-container
+{
+   display: flex;
+   margin-top: 25px;
+}
+
+app-upload
+{
+   width: 300px;
 }

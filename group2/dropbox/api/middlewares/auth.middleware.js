@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const isAuth = (req, res, next) => {
     const header = req.get('Authorization');
-
+    console.log(header,'header')
     if (!header) {
         return res.status(401).send('Not authorized');
     };

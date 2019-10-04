@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const dbWrapper = require("../mongo/databse-wrapper");
 const jwt = require('jsonwebtoken');
 

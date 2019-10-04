@@ -1,9 +1,10 @@
-<div class="files-wrapper">
-  <app-file *ngFor="let file of files" 
-  [file]="file"
-  (onDownload)="onDownload($event)"
-  ></app-file>
+<div class="files-container">
+    <div class="files-wrapper">
+        <app-file *ngFor="let file of files$ | async" 
+        [file]="file"
+        (onDownload)="onDownload($event)"
+        (onDelete)="onDelete($event)"
+        ></app-file>
+      </div>
+      <app-upload></app-upload>
 </div>
-<input type="file">
-
-<div (click)="update()">Update email</div>

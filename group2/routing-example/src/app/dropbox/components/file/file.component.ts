@@ -9,6 +9,7 @@ import { IFile } from '../../interfaces/IFile';
 export class FileComponent implements OnInit
 {
   @Output() onDownload: EventEmitter<string> = new EventEmitter();
+  @Output() onDelete: EventEmitter<string> = new EventEmitter();
   @Input() file: IFile;
 
   constructor() { }

@@ -8,13 +8,11 @@ import { ServiceConfig } from 'src/app/config/service-config';
 @Injectable({ providedIn: 'root' })
 export class AuthService
 {
-    private currentUserSubject: BehaviorSubject<any>;
-    public currentUser: Observable<any>;
+    private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
+    public currentUser: Observable<any> = this.currentUserSubject.asObservable();
 
     constructor(private http: HttpClient)
     {
-        this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
     }
 
     public get currentUserValue()
@@ -40,7 +38,7 @@ export class AuthService
             {
                 if (user && user.token)
                 {
-
+                    localStorage.setItem('currentUser', JSON.stringify(user));
                     localStorage.setItem('TOKEN', JSON.stringify(user.token));
                     this.currentUserSubject.next(user);
                 }

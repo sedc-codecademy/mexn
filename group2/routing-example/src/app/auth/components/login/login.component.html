@@ -1,14 +1,22 @@
-<div class="header center">Log In</div>
-
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-
-  <input matInput type="text" id="email" placeholder="email" autocomplete="off" formControlName="email"
-    required>
-
-  <input matInput type="password" id="password" placeholder="Password" formControlName="password" required>
-
-  <div class="actions">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+<div class="login-wrapper">
+  <div>
+    <img src="https://cfl.dropboxstatic.com/static/images/empty_states/sign-in-boulder@2x-vfl87XcA-.png" alt="login">
   </div>
+  <div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-</form>
+      <input matInput type="text" id="email" placeholder="Email" autocomplete="off" formControlName="email" required>
+      <div *ngIf="f.email.touched && f.email.invalid" class="inputError">
+        Not valid email
+      </div>
+      <input matInput type="password" id="password" placeholder="Password" formControlName="password" required>
+      <div *ngIf="f.password.touched && f.password.invalid" class="inputError">
+        Passowrd need to be 5 chars long
+      </div>
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -29,6 +29,17 @@ const uploadFiles = async (files, userId) => {
     }
 }
 
+const deleteFile = async id => {
+    const _id = new ObjectId(id)
+    try {
+        const deletedFile = await dbWrapper.dropCollection('files', {_id})
+        return deletedFile;
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
 const toFileModels = (files, userId) => {
     const mapedFiles = files.map(({
         originalname,
@@ -43,5 +54,6 @@ const toFileModels = (files, userId) => {
 
 module.exports = {
     getAllFiles,
-    uploadFiles
+    uploadFiles,
+    deleteFile
 }

@@ -5,6 +5,6 @@
   </div>
   <div class="d-flex align-items-center">
     <span class="mr-2" (click)="onDownload.emit(file.filename)">Download</span>
-    <span>Delete</span>
+    <span (click)="onDelete.emit(file._id)">Delete</span>
   </div>
 </div>

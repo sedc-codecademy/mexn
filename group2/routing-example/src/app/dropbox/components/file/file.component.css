@@ -1,5 +1,6 @@
 .file-container
 {
     padding: 15px;
-    border-bottom: 1px solid #E6E8EB;
+    border: 1px solid #E6E8EB;
+    border-top: 0;
 }

@@ -12,7 +12,7 @@ const getAllFiles = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        res.status(500).send(error,'Faield')
+        res.status(500).send(error, 'Faield')
     }
 }
 
@@ -25,7 +25,7 @@ const uploadFiles = async (req, res) => {
     if (!files) {
         return res.status(400).send('Please send fils');
     }
-    console.log('files:',files)
+    console.log('files:', files)
     try {
         const {
             ops: response
@@ -39,10 +39,20 @@ const uploadFiles = async (req, res) => {
 const deleteFile = async (req, res) => {
 
     const {
-        body
+        params: {
+            id
+        }
     } = req;
 
-    res.status(200).send('OK');
+    try {
+        const deletedFile = await fileService.deleteFile(id)
+        res.status(200).send(deletedFile);
+
+    } catch (error) {
+        res.status(500).send({
+            msg: 'Server error'
+        });
+    }
 }
 
 const downloadFile = async (req, res) => {

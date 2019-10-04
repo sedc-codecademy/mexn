@@ -7,7 +7,7 @@ import { CanActivateGuard } from './auth/guards/can-activate.guard';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/auth',
+        redirectTo: 'auth',
         pathMatch: 'full'
     },
     {
