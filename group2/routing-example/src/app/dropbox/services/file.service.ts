@@ -5,33 +5,35 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { saveAs } from "file-saver";
 import { IFile } from '../interfaces/IFile';
 import { tap } from 'rxjs/operators';
+import { Store } from 'src/app/shared/classes/store';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FileService
+export class FileService extends Store<IFile[]>
 {
-  private files: BehaviorSubject<IFile[]> = new BehaviorSubject([])
-  public files$: Observable<IFile[]> = this.files.asObservable();
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient)
+  {
+    super()
+  }
 
   initFiles()
   {
-    const currentState = this.files.getValue();
+    const currentState = this.getAll();
 
     console.log(currentState)
-    if (currentState.length > 0) return;
+    if (currentState && currentState.length > 0) return;
 
-    this.getAll().subscribe()
+    this.getAllFiles().subscribe()
   }
 
-  getAll(): Observable<any>
+  getAllFiles(): Observable<any>
   {
     return this._http.get(ServiceConfig.FILES)
       .pipe(tap(files =>
       {
-        this.files.next(files)
+        this.store(files)
       }))
   }
 
@@ -45,12 +47,12 @@ export class FileService
     return this._http.delete(ServiceConfig.DELETE + "/" + id)
       .pipe(tap(() =>
       {
-        const files = [...this.files.getValue()];
+        const files = [...this.getAll()];
         const index = files.findIndex(file => file._id === id);
         if (index > -1)
         {
           files.splice(index, 1);
-          this.files.next(files)
+          this.store(files)
         }
       }))
   }
@@ -60,8 +62,9 @@ export class FileService
     return this._http.post(ServiceConfig.UPLOAD, body)
       .pipe(tap((files: IFile[]) =>
       {
-        const currentState = [...this.files.getValue()];
-        this.files.next([...currentState, ...files])
+        const currentState = [...this.getAll()];
+        // [oldstate+ files]
+        this.store([...currentState, ...files])
       }))
   }
 

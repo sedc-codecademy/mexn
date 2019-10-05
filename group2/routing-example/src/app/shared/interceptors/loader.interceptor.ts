@@ -27,10 +27,10 @@ export class LoaderInterceptor implements HttpInterceptor
         return next.handle(req)
             .pipe(finalize(() =>
             {
-                setTimeout(() =>
-                {
+                // setTimeout(() =>
+                // {
                     loaderService.hide()
-                }, 3000)
+                // }, 3000)
             }));
     }
 }

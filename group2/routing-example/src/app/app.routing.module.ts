@@ -14,7 +14,7 @@ const routes: Routes = [
         path: 'auth', loadChildren: './auth/auth.module#AuthModule'
     },
     {
-        path: 'dropbox', loadChildren: './dropbox/dropbox.module#DropboxModule', canActivate: [CanActivateGuard]
+        path: 'dropbox', loadChildren: './dropbox/dropbox.module#DropboxModule'
     },
     // { path: '**', component: PagenotfoundComponent }
 ];
