@@ -8,10 +8,14 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './auth/auth.interceptor';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { ButtonComponent } from './calculator/button/button.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalculatorComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
