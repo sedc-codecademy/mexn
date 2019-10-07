@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IButton } from 'src/app/button.service';
+import { IButton } from 'src/app/services/button.service';
 
 @Component({
   selector: 'app-button',

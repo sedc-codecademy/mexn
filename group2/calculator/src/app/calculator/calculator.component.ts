@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonService, IButton } from '../button.service';
+import { ButtonService, IButton } from '../services/button.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { CalculatorService } from '../services/calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -13,15 +14,19 @@ export class CalculatorComponent implements OnInit
   buttons$: Observable<IButton[]> = this._buttonService.store$
     .pipe(tap(buttons => console.log(buttons)));
 
-  constructor(private _buttonService: ButtonService) { }
+  calculator$: Observable<any> = this._calculatorService.store$;
+
+  constructor(
+    private _buttonService: ButtonService,
+    private _calculatorService: CalculatorService) { }
 
   ngOnInit()
   {
   }
 
-  onButton(button:IButton)
+  onButton(button: IButton)
   {
-    console.log(button)
+    this._calculatorService.handleDisplay(button)
   }
 
 }

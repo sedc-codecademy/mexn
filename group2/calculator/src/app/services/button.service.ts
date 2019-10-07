@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Store } from './shared/classes/store';
+import { Store } from '../classes/store';
 
 export interface IButton
 {
   value: number | string,
-  isOperator: boolean
+  isOperator: boolean,
+  reset?: boolean
 }
 
 @Injectable({
@@ -81,6 +82,11 @@ export class ButtonService extends Store<IButton[]>{
       {
         value: '=',
         isOperator: false
+      },
+      {
+        value: 'C',
+        isOperator: false,
+        reset: true
       }
     ]
     this.store(buttons)

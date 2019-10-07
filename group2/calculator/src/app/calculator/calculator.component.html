@@ -1,6 +1,6 @@
-<div>
-  <div class="display">
-    DISPLAY HERE
+<div class="calculator">
+  <div class="display" *ngIf="calculator$ | async as calculator">
+    {{calculator.display}}
   </div>
 
   <app-button *ngFor="let button of buttons$ | async" [button]="button" (onButton)="onButton($event)"></app-button>
